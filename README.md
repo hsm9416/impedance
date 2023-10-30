@@ -5,7 +5,7 @@
     sudo python3 uart.py
     1
 
-### (another terminer)
+### (another terminal)
     sudo python3 test.py
     1
 
