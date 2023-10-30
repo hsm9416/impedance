@@ -1,29 +1,3 @@
-# import serial
-# import time
-
-# # 시리얼 객체 생성
-# ser = serial.Serial( port="/dev/ttyTHS0",
-#     baudrate=115200,
-#     bytesize=serial.EIGHTBITS,
-#     parity=serial.PARITY_NONE,
-#     stopbits=serial.STOPBITS_ONE
-# )
-
-# # 사용자로부터 입력받기
-# user_input = input("Enter '1' to send the command: ")
-
-# # 사용자가 '1'을 입력하면 명령 전송
-# if user_input == '1':
-#     command = "\r\nTOGGLE#1\r\n".encode()  # 문자열을 바이트로 인코딩
-#     ser.write(command)
-#     print("Command sent, waiting for response...")
-
-#     # 데이터 읽기
-#     while True:
-#             data = ser.readline().decode('utf-8', errors="ignore").strip()  # 데이터 읽고, 디코딩
-#             if data:  # 데이터가 비어있지 않으면 출력
-#                 print(f"Received: {data}")
-
 
 import serial
 import time
