@@ -29,10 +29,6 @@ try:
                 print(f"l_hip_velocity: {l_hip_velocity}")
                 print(f"l_hip_torque: {l_hip_torque}")
                 print(f"r_hip_torque: {r_hip_torque}")
-                # print(f"l_hip_targetspeed: {l_hip_targetspeed}")
-                # print(f"r_hip_targetspeed: {r_hip_targetspeed}")
-                # print(f"control_mode: {control_mode}")
-                # print(f"control_interval: {control_interval}")
                 print("=====================================")
 
 except KeyboardInterrupt:
