@@ -16,6 +16,7 @@ class SerialReaderThread(threading.Thread):
 
     def run(self):
         while self.running:
+            time.sleep(0.01)  # 1초 대기
             data = self.ser.readline().decode('utf-8', errors="ignore").strip()
             if data:  # 데이터가 비어있지 않으면 처리
                 split_data = data.split('|')
@@ -53,7 +54,6 @@ ser = serial.Serial(
 # 시리얼 읽기 스레드 시작
 reader_thread = SerialReaderThread(ser)
 reader_thread.start()
-
 try:
     while True:
         command = "\r\nTOGGLE#1\r\n".encode()  # 문자열을 바이트로 인코딩

@@ -1,9 +1,10 @@
 # read_data.py 파일
-
 import serial
+import time
 
 # 시리얼 객체 생성 및 데이터 읽기 함수
 def read_serial_data(ser):
+    # time.sleep(0.01)  # 1초 대기
     data = ser.readline().decode('utf-8', errors="ignore").strip()
     return data
 
@@ -50,6 +51,7 @@ def toggle():
 # 메인 데이터 읽기 및 처리 루프
 def uart_loop(ser):
     try: 
+        toggle()
         while True:
             data = read_serial_data(ser)
             if data:  # 데이터가 비어있지 않으면
