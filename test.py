@@ -10,23 +10,21 @@ ser = serial.Serial(
     parity=serial.PARITY_NONE,
     stopbits=serial.STOPBITS_ONE
 )
-def main():
-    try:
-            command =  f"\r\nCURRENT?R#{-200}|".encode()  # 문자열을 바이트로 인코딩
-            ser.write(command)
-            print("Command sent, waiting for response...")
-            # 데이터 읽기
-            while True:
-                print(f"============torque => {command}======================")
-
-    except KeyboardInterrupt:
-        command =  f"\r\nCURRENT?R#{0}|".encode()  # 문자열을 바이트로 인코딩
-        ser.write(command)
-        print("\nProgram terminated by user.")
-    finally:
-        ser.close()  # 시리얼 포트 닫기
-        print("Serial port closed.")
+def main(): 
+    command =  f"\r\nCURRENT?R#{-200}|".encode()  # 문자열을 바이트로 인코딩
+    ser.write(command)
+    print("Command sent, waiting for response...")
+   
+   
+   
+    # except KeyboardInterrupt:
+    #     command =  f"\r\nCURRENT?R#{0}|".encode()  # 문자열을 바이트로 인코딩
+    #     ser.write(command)
+    #     print("\nProgram terminated by user.")
+    # finally:
+    #     ser.close()  # 시리얼 포트 닫기
+    #     print("Serial port closed.")
 
 if __name__ == '__main__':
     main()
- 
+ ₩₩
