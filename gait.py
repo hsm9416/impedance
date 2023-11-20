@@ -22,8 +22,7 @@ def gait_cycle():
     max_hip_angle_10_20_value = float('-inf')  # 최대 힙 각도 값 초기화 (10-20 범위)
     min_hip_angle_20_60_value = float('inf')  # 최소 힙 각도 값 초기화 (20-60 범위)
     max_hip_angle_60_80_value = float('-inf')  # 최대 힙 각도 값 초기화 (60-80 범위)
-    start_value = 0  # Start 값 초기화
-    end_value = 0  # End 값 초기화
+
 
     for cycle in range(10):  # 10번의 시퀀스를 기록
         for current_value in range(max_value + 1):
@@ -37,18 +36,22 @@ def gait_cycle():
 
             elif 0 < current_value <= 20:
                 max_hip_angle_10_20_value = max(max_hip_angle_10_20_value, float(uart_data[2]))
+                max_hip_10_20_cv = current_value
 
             elif 20 < current_value <= 60:
                 min_hip_angle_20_60_value = min(min_hip_angle_20_60_value, float(uart_data[2]))
+                min_hip_20_60_cv = current_value
+
 
             elif 60 < current_value <= 80:
                 max_hip_angle_60_80_value = max(max_hip_angle_60_80_value, float(uart_data[2]))
+                max_hip_60_80_cv = current_value
 
             elif current_value == 100:  # End 포인트
                 end_value = float(uart_data[2])  # End 데이터 기록
                 # 현재 시퀀스의 로그를 기록
-                combined_logs.append((start_value, max_hip_angle_10_20_value, min_hip_angle_20_60_value, max_hip_angle_60_80_value, end_value))
-                start_value = end_value = max_hip_angle_10_20_value = max_hip_angle_60_80_value = 0
+                combined_logs.append((max_hip_10_20_cv,min_hip_20_60_cv,max_hip_60_80_cv,max_hip_angle_10_20_value, min_hip_angle_20_60_value, max_hip_angle_60_80_value))
+                max_hip_angle_10_20_value = max_hip_angle_60_80_value = 0
                 min_hip_angle_20_60_value = float('inf')
                 break  # 현재 시퀀스 끝내고 다음 시퀀스로
 
@@ -66,7 +69,8 @@ def display_robot_state(uart_data, current_value):
     if uart_data:  # uart_data가 비어있지 않은지 확인
         print("=====================================")
         print(f"gait_cycle: {current_value}, r_hip_angle: {uart_data[3]}")
-        # print(f"gait_cycle: {current_value}, r_hip_angle: {uart_data[3]}")
+        print(f"gait_cycle: {current_value}, r_hip_angle: {uart_data[3]}")
+    return current_value
 
 
 if __name__ == '__main__':

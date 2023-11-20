@@ -11,6 +11,7 @@ from test import send_left_command, send_right_command
 # 시리얼 객체 생성
 ser = init_serial()
 
+
 class ImpedanceControl:
     
     def __init__(self,mass,stiffness,damping):
@@ -37,13 +38,13 @@ def main():
     if not ser.is_open:
         ser.open()
 
-    impedance_control_left = ImpedanceControl(0,5,3)
-    impedance_control_right = ImpedanceControl(0,5,3)
+    impedance_control_left = ImpedanceControl(0,6,5)
+    impedance_control_right = ImpedanceControl(0,6,5)
     desired_angle = 0
     desired_velocity = 0
 
     try:
-        while True:
+        while True: 
             processed_data = uart_loop(ser)
             if processed_data is None:
                 print("No data or error in data reception.")
@@ -53,8 +54,8 @@ def main():
             Robot_time, l_hip_angle, r_hip_angle, l_hip_velocity, r_hip_velocity, l_hip_torque, r_hip_torque, l_hip_targetspeed, r_hip_targetspeed, control_mode, control_interval = processed_data
 
             # 각도 제한을 적용할 수 있습니다. 이 예제에서는 구현되지 않았습니다.
-            l_hip = l_hip_angle
-            r_hip = r_hip_angle
+            l_hip = round(l_hip_angle,2)
+            r_hip = round(r_hip_angle,2)
             l_vel = round(l_hip_velocity,2)
             r_vel = round(r_hip_velocity,2)
 
@@ -75,7 +76,7 @@ def main():
 
 
             print(Robot_time)
-            print(f"l_tau : {l_tau}")
+            print(f"l_hip : {l_hip}")
             print(f"r_hip : {r_hip}") 
             print(f"l_tau : {l_tau_limit_round}")
             print(f"r_tau : {r_tau_limit_round}")
