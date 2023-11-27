@@ -15,3 +15,8 @@
 3. impedance control
 
 
+## Todolist
+
+- 임피던스 컨트롤 desired position
+- imu 이종 pc간 통신
+- 검증
