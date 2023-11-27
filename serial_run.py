@@ -30,7 +30,7 @@ class SerialReaderThread(threading.Thread):
                     print(f"l_hip_angle: {l_hip_angle}")
                     print(f"r_hip_angle: {r_hip_angle}")
                     print(f"l_hip_velocity: {l_hip_velocity}")
-                    print(f"l_hip_velocity: {l_hip_velocity}")
+                    print(f"r_hip_velocity: {r_hip_velocity}")
                     print(f"l_hip_current: {l_hip_torque}")
                     print(f"r_hip_current: {r_hip_torque}")
                     print(f"l_hip_targetspeed: {l_hip_targetspeed}")
