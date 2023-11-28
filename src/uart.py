@@ -2,7 +2,7 @@
 import serial
 import time
 
-<<<<<<< HEAD
+
 # 시리얼 객체 생성
 def uart_open():
     ser = serial.Serial(
@@ -40,7 +40,7 @@ def uart_open():
 if __name__ == '__main__':
     uart_open()
 
-=======
+
 # 시리얼 객체 생성 및 데이터 읽기 함수
 def read_serial_data(ser):
     # time.sleep(0.01)  # 1초 대기
@@ -108,4 +108,3 @@ if __name__ == '__main__':
         # 변수 할당
         Robot_time, l_hip_angle, r_hip_angle, l_hip_velocity, r_hip_velocity, l_hip_torque, r_hip_torque, l_hip_targetspeed, r_hip_targetspeed, control_mode, control_interval = processed_data
         print(processed_data)
->>>>>>> 1107

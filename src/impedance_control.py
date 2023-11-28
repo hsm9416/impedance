@@ -5,12 +5,13 @@
 import serial
 import time
 import numpy as np
+from gait import Subscriber
+from reference import process_sequences
 from uart import init_serial,uart_loop
 from test import send_left_command, send_right_command
 
 # 시리얼 객체 생성
 ser = init_serial()
-
 
 class ImpedanceControl:
     
@@ -38,9 +39,23 @@ def main():
     if not ser.is_open:
         ser.open()
 
+    subscriber_instance = Subscriber()  # Subscriber 클래스 인스턴스 생성
+    subscriber_instance.listener() 
+
+    robot_state_data = load_robot_state('combined_robot_state_logs.pkl')
+    sequences = segment_data_into_sequences(robot_state_data)
+    max_hip_10_20_cv, min_hip_20_60_cv, max_hip_60_80_cv, max_hip_10_20_value, min_hip_20_60_value, max_hip_60_80_value = process_sequences(sequences)
+
     impedance_control_left = ImpedanceControl(0,6,5)
     impedance_control_right = ImpedanceControl(0,6,5)
-    desired_angle = 0
+
+    if current_value == max_hip_10_20_cv :
+        desired_angle = max_hip_10_20_value
+    elif current_value == min_hip_20_60_cv :
+        desired_angle = min_hip_20_60_value
+    elif current_value == max_hip_60_80_cv:
+        desired_angle = max_hip_60_80_value
+
     desired_velocity = 0
 
     try:
